@@ -18,6 +18,8 @@ class Barang extends CI_Controller{
             $data['barang']=$this->Barang_model->cariDataBarang();
         }
         $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
         $this->load->view('barang/index');
         $this->load->view('templates/footer');
     }
@@ -33,6 +35,8 @@ class Barang extends CI_Controller{
         if ($this->form_validation->run() == FALSE)
             {
                 $this->load->view('templates/header',$data);
+                $this->load->view('templates/sidebar');
+                $this->load->view('templates/topbar');
                 $this->load->view('barang/tambah');
                 $this->load->view('templates/footer');
             }
@@ -40,19 +44,21 @@ class Barang extends CI_Controller{
             {
                 $this->Barang_model->tambahDataBarang();
                 $this->session->set_flashdata('flash','Berhasil Ditambahkan');
-                redirect('');
+                redirect('barang');
             }
     }
     public function hapus($id){
         $this->Barang_model->hapusDataBarang($id);
         $this->session->set_flashdata('flash','Dihapus');
-        redirect('');
+        redirect('barang');
     }
     
     public function detail($id){
         $data['judul']="Detail Barang";
         $data['barang']=$this->Barang_model->getBarangById($id);
         $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
         $this->load->view('barang/detail',$data);
         $this->load->view('templates/footer');
     }
@@ -68,6 +74,8 @@ class Barang extends CI_Controller{
         if ($this->form_validation->run() == FALSE)
             {
                 $this->load->view('templates/header',$data);
+                $this->load->view('templates/sidebar');
+                $this->load->view('templates/topbar');
                 $this->load->view('barang/ubah',$data);
                 $this->load->view('templates/footer');
             }
@@ -75,7 +83,7 @@ class Barang extends CI_Controller{
             {
                 $this->Barang_model->ubahDataBarang();
                 $this->session->set_flashdata('flash','Berhasil Diubah');
-                redirect('');
+                redirect('barang');
             }
     }
 
